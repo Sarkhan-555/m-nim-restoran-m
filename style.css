@@ -569,3 +569,118 @@ footer {
         font-size: 24px;
     }
 }
+/* Mobil cihazlar üçün əlavə responsiv dizayn */
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+    
+    header {
+        padding: 10px;
+    }
+    
+    header h1 {
+        font-size: 24px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    .menu-items-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .menu-item {
+        max-width: 100%;
+    }
+    
+    .menu-image {
+        height: 180px;
+    }
+    
+    .item-details {
+        padding: 10px;
+    }
+    
+    .item-name {
+        font-size: 16px;
+        min-height: auto;
+    }
+    
+    .menu-category {
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    
+    .menu-title {
+        font-size: 22px;
+        margin: 15px 0;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    .footer-info {
+        margin-bottom: 15px;
+    }
+}
+
+/* Kiçik ekranlı telefonlar üçün */
+@media (max-width: 375px) {
+    header h1 {
+        font-size: 20px;
+    }
+    
+    .menu-image {
+        height: 150px;
+    }
+    
+    .menu-title {
+        font-size: 20px;
+    }
+    
+    .menu-category h3 {
+        font-size: 18px;
+    }
+}
+
+/* Tam ekran genişlikli konteyner */
+.menu-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* Ümumi sayt tamlığı üçün */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Daha yaxşı layout üçün əsas header */
+header {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Naviqasiya düymələrinin daha böyük toxunuş sahəsi */
+nav ul li a {
+    padding: 10px 15px;
+    display: block;
+}

@@ -772,3 +772,97 @@ footer {
         grid-template-columns: repeat(4, 1fr);
     }
 }
+/* ================= MOBİL ÜÇÜN ƏLAVƏ DÜZƏLİŞLƏR ================= */
+@media (max-width: 480px) {
+    /* Başlıq ölçüləri */
+    .logo {
+        font-size: 1.4rem;
+    }
+    
+    /* Hero bölməsi */
+    .hero {
+        height: 70vh;
+        background-attachment: scroll; /* Parallax effektini sıradan çıxarır */
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        max-width: 100%;
+        font-size: 1rem;
+    }
+    
+    /* Düymələr */
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    /* Menyu bölməsi */
+    .menu-section {
+        padding: 1rem;
+    }
+    
+    .menu-title {
+        font-size: 1.8rem;
+    }
+    
+    /* Şəkil ölçüləri */
+    .menu-image {
+        height: 150px !important; /* Bütün şəkillər üçün standart ölçü */
+    }
+    
+    /* Grid düzəlişi */
+    .menu-items-grid {
+        grid-template-columns: 1fr !important; /* 1 sütun */
+        gap: 10px;
+    }
+    
+    /* Footer */
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-section h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* ================= XÜSUSİ DÜZƏLİŞLƏR ================= */
+/* Mobil menyu üçün əlavə düzəliş */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    nav ul li a {
+        padding: 0.5rem;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    nav.active {
+        display: block;
+    }
+}
+
+/* Şəkillər üçün universal uyğunlaşma */
+.menu-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* Şəkilləri deformasiya olmadan saxlayır */
+}
+
+/* Viewport əlavəsi (HTML head-ə əlavə edin) */
+/* <meta name="viewport" content="width=device-width, initial-scale=1.0"> */

@@ -554,29 +554,34 @@
         function toggleCategory(header) {
             const content = header.nextElementSibling;
             const arrow = header.querySelector('.arrow');
-            
-            // Bu kateqoriyanı açıq/bağlı vəziyyətə gətirmək
-            content.classList.toggle('active');
-            arrow.classList.toggle('active');
+    
+            // Əgər kateqoriya açıqdırsa, onu bağla
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                arrow.classList.remove('active');
+            } else {
+                // Digər açıq kateqoriyaları bağla
+                document.querySelectorAll('.category-content.active').forEach(item => {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('.arrow').classList.remove('active');
+                });
+    
+                // Cari kateqoriyanı aç
+                content.classList.add('active');
+                arrow.classList.add('active');
+            }
         }
     
-        // İlk kateqoriyanı açıq vəziyyətdə göstərmək
         document.addEventListener('DOMContentLoaded', function() {
-            // Hər bir kateqoriya başlığını tapırıq və ona kliklə açılıb-bağlanma funksiyası əlavə edirik
+            // Bütün kateqoriya başlıqlarını tapırıq
             const categoryHeaders = document.querySelectorAll('.category-header');
             
             categoryHeaders.forEach(header => {
+                // Hər bir başlığa klik hadisəsi əlavə edirik
                 header.addEventListener('click', function() {
                     toggleCategory(header);
                 });
             });
-    
-            // İlk kateqoriyanı açıq vəziyyətdə göstərmək
-            const firstCategory = document.querySelector('.category-content');
-            if (firstCategory) {
-                firstCategory.classList.add('active');
-                document.querySelector('.arrow').classList.add('active');
-            }
         });
     </script>
     

@@ -690,3 +690,14 @@ img {
   .dish_info {
     flex-grow: 1; /* Məzmunun kartın qalan hissəsini doldurması üçün */
   }
+  .menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .menu-item {
+    width: 200px;
+    text-align: center;
+  }

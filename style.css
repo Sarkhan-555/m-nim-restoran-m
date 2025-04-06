@@ -668,21 +668,25 @@ img {
     height: auto;
     vertical-align: middle;
 }
-/* Kartların bərabər hündürlükdə olması üçün */
-.dish_card {
-    height: 350px; /* Uyğun hündürlüyü seçə bilərsiniz */
+/* Birinci üsul: Kartların məzmunu üçün sabit hündürlük */
+.dish_info {
+    height: 120px; /* Məzmun üçün sabit hündürlük */
+    overflow: hidden; /* Daşan məzmunu gizlət */
   }
   
-  /* Və ya təsvir hissəsi üçün */
-  .dish_description {
-    min-height: 60px;
-    max-height: 80px;
-    overflow: auto;
-  }
-  
-  /* Alternativ olaraq dishes üçün grid istifadə etmək üçün */
+  /* İkinci üsul: Flexbox ilə kartları bərabərləşdirmək */
   .dishes {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+  }
+  
+  .dish_card {
+    flex: 0 0 calc(33.333% - 20px); /* Üç sütunlu düzülüş üçün (boşluqları nəzərə alaraq) */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dish_info {
+    flex-grow: 1; /* Məzmunun kartın qalan hissəsini doldurması üçün */
   }

@@ -2,12 +2,14 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-      <title>Mənim Restoranım</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mənim Restoranım</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Mobil menyu düyməsi əlavə edildi -->
     <header>
+        <button class="menu-toggle">☰</button>
         <h1>Mənim Restoranım</h1>
         <nav>
             <ul>
@@ -20,17 +22,16 @@
     </header>
 
     <main>
+        <!-- Tək hero section qalıb -->
         <section class="hero">
-            <section class="hero">
-                <div class="hero-content">
-                    <h2>Ən ləzzətli Azərbaycan mətbəxi</h2>
-                    <p>Ənənəvi reseptlər və yerli məhsullarla hazırlanan yeməklər</p>
-                    <a href="menyu.html" class="btn">Menyuya baxın</a>
-                </div>
-            </section>
-            
-            
-        
+            <div class="hero-content">
+                <h2>Ən ləzzətli Azərbaycan mətbəxi</h2>
+                <p>Ənənəvi reseptlər və yerli məhsullarla hazırlanan yeməklər</p>
+                <a href="menyu.html" class="btn">Menyuya baxın</a>
+            </div>
+        </section>
+
+        <!-- Features bölməsi grid ilə -->
         <section class="features">
             <div class="feature">
                 <h3>Yerli Məhsullar</h3>
@@ -45,7 +46,8 @@
                 <p>Ailəvi və dostlarla vaxt keçirmək üçün ideal məkan.</p>
             </div>
         </section>
-        
+
+        <!-- Xüsusi təkliflər flexbox ilə -->
         <section class="special-offers">
             <h2>Xüsusi Təkliflər</h2>
             <div class="offers">
@@ -61,8 +63,9 @@
         </section>
     </main>
 
+    <!-- Footer düzəlişləri -->
     <footer>
-        <div class="footer-content">
+        <div class="footer-container">
             <div class="footer-info">
                 <h3>İş saatları</h3>
                 <p>Həftəiçi: 09:00 - 22:00</p>
@@ -77,19 +80,16 @@
         <p class="copyright">&copy; 2025 Mənim Restoranım. Bütün hüquqlar qorunur.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- JavaScript düzəlişləri -->
     <script>
-        // Mobil menyu üçün JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-          const menuToggle = document.querySelector('.menu-toggle');
-          const nav = document.querySelector('nav');
-          
-          if (menuToggle) {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('nav');
+            
             menuToggle.addEventListener('click', function() {
-              nav.classList.toggle('active');
+                nav.classList.toggle('active');
             });
-          }
         });
-      </script>
+    </script>
 </body>
 </html>

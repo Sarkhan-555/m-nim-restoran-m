@@ -3,136 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menyu - Mənim Restoranım</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Mənim restoranım - Menyu</title>
     <style>
-        /* Əsas stillər */
-        .menu-category {
-            margin-bottom: 1rem;
-            border: 1px solid #8b4513;
-            border-radius: 8px;
-            overflow: hidden;
+        :root {
+            --primary-color: #ca9859;
+            --secondary-color: #8b4513;
+            --accent-color: #b17e3c;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --bg-light: #f9f5f0;
+            --border-radius: 8px;
         }
-
-        .category-header {
-            background-color: #8b4513;
-            color: white;
-            padding: 12px 15px;
-            cursor: pointer;
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo h1 {
+            color: var(--primary-color);
+            margin-left: 15px;
+            font-size: 24px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 20px;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        main {
+            padding: 40px 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        
+        .page-title h2 {
+            font-size: 32px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .page-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .menu-section {
+            margin-bottom: 30px;
+        }
+        
+        .menu-category {
+            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .category-header:hover {
+            background-color: var(--accent-color);
+        }
+        
         .category-header h3 {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
-
-        .category-content {
-            display: none; /* Başlanğıcda gizlədilir */
-            background-color: #f8f5f0;
-        }
-
-        .category-content.active {
-            display: block; /* Aktiv olduqda göstərilir */
-        }
-
-        .menu-items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            padding: 15px;
-        }
-
-        .menu-item {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu-image {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .item-details {
-            padding: 10px;
-        }
-
-        .item-name {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .item-price {
-            color: #8b4513;
-            font-weight: bold;
-        }
-
+        
         .arrow {
             transition: transform 0.3s;
+            font-size: 1.2rem;
         }
-
+        
         .arrow.active {
             transform: rotate(180deg);
         }
-
+        
+        .category-content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+        }
+        
+        .category-content.active {
+            display: block;
+        }
+        
+        .menu-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(67, 44, 44, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .menu-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .item-details {
+            padding: 15px;
+        }
+        
+        .item-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .item-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .item-price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
         footer {
-            margin-top: 2rem;
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-info {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .copyright {
             text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .menu-items-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-info {
+                margin-bottom: 30px;
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Mənim Restoranım</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Ana Səhifə</a></li>
-                <li><a href="menyu.html" class="active">Menyu</a></li>
-                <li><a href="haqqimizda.html">Haqqımızda</a></li>
-                <li><a href="elaqe.html">Əlaqə</a></li>
-            </ul>
-        </nav>
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Mənim restoranım</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Səhifə</a></li>
+                    <li><a href="menyu.html" class="active">Menyu</a></li>
+                    <li><a href="haqqimizda.html">Haqqımızda</a></li>
+                    <li><a href="galereya.html">Qalereya</a></li>
+                    <li><a href="elaqe.html">Əlaqə</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-
     <main>
-    </section>
+        <div class="container">
+            <div class="page-title">
+                <h2>Bizim Menyu</h2>
+            </div>
 
-        <section class="menu-section">
-                            <!-- Səhər Yeməyi -->
-            <div class="menu-category">
-                <div class="category-header" onclick="toggleCategory(this)">
-                        <h3>Səhər Yeməyi</h3>
-                    <span class="arrow">▼</span>
-                </div>
-                <div class="category-content">
-                    <div class="menu-items-grid">
-                        <!-- Omlet -->
-                        <div class="menu-item">
-                            <img src="images/Omlet.jpeg" alt="Omlet" class="menu-image">
-                            <div class="item-details">
-                                <div class="item-name">Omlet</div>
-                                <div class="item-price">3.50 AZN</div>
+            <section class="menu-section">
+                <!-- Balıq Yeməkləri -->
+                <div class="menu-category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <h3>Balıq Yeməkləri</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-items-grid">
+                            <!-- Qızıl Farel -->
+                            <div class="menu-item">
+                                <img src="images/qizil farel.jpg" alt="Qızıl Farel" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Qızıl Farel</div>
+                                    <div class="item-description">Təzə tutulmuş farel balığı, xüsusi ədviyyatlarla bişirilir</div>
+                                    <div class="item-price">16.50 AZN</div>
+                                </div>
                             </div>
-                        </div>
-                        <!-- Qarabaşaq sıyığı -->
-                        <div class="menu-item">
-                            <img src="images/Qarabashaq siyigi.jpg" alt="Qarabaşaq sıyığı" class="menu-image">
-                            <div class="item-details">
-                                <div class="item-name">Qarabaşaq sıyığı</div>
-                                <div class="item-price">2.00 AZN</div>
+                            <!-- Təndirdə Balıq -->
+                            <div class="menu-item">
+                                <img src="images/tendirde baliq.jpg" alt="Təndirdə Balıq" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Təndirdə Balıq</div>
+                                    <div class="item-description">Kəklikotu və limon ilə təndirdə hazırlanmış balıq</div>
+                                    <div class="item-price">18.00 AZN</div>
+                                </div>
+                            </div>
+                            <!-- Somon Balığı -->
+                            <div class="menu-item">
+                                <img src="/api/placeholder/400/300" alt="Somon Balığı" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Somon Filesi</div>
+                                    <div class="item-description">Özel sous və tərəvəzlərlə somon balığı</div>
+                                    <div class="item-price">22.00 AZN</div>
+                                </div>
+                            </div>
+                            <!-- Balıq Şorbası -->
+                            <div class="menu-item">
+                                <img src="/api/placeholder/400/300" alt="Balıq Şorbası" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Balıq Şorbası</div>
+                                    <div class="item-description">Təzə balıq və tərəvəzlərlə hazırlanmış şorba</div>
+                                    <div class="item-price">8.50 AZN</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
+            </section>
+
             <section class="menu-section">
                 <!-- İsti Yeməklər -->
                 <div class="menu-category">
@@ -143,69 +389,42 @@
                     <div class="category-content">
                         <div class="menu-items-grid">
                             <div class="menu-item">
-                                <img src="images/Dushbere.jpeg" alt="Düşbərə" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Düşbərə" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Düşbərə</div>
-                                    <div class="item-price">5.00 AZN</div>
+                                    <div class="item-description">Ətli milli xəmir yeməyi, sərin qatıqla verilir</div>
+                                    <div class="item-price">6.00 AZN</div>
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="images/Lahmacun.webp" alt="Lahmacun" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Lahmacun</div>
-                                    <div class="item-price">4.00 AZN</div>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <img src="images/Lule kabab.jpeg" alt="Lülə Kebabı" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Lülə Kebabı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Lülə Kebabı</div>
-                                    <div class="item-price">6.00 AZN</div>
+                                    <div class="item-description">Qoyun ətindən hazırlanmış kabab, təndirdə bişirilir</div>
+                                    <div class="item-price">12.00 AZN</div>
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="images/Toyuq kababi.jpeg" alt="Toyuq Kebabı" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Toyuq Kebabı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Toyuq Kebabı</div>
-                                    <div class="item-price">6.00 AZN</div>
+                                    <div class="item-description">Marinadlanmış toyuq əti, xüsusi ədviyyatlarla</div>
+                                    <div class="item-price">10.00 AZN</div>
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="images/Seher plovu.jpeg" alt="Plov" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Plov" class="menu-image">
                                 <div class="item-details">
-                                    <div class="item-name">Plov</div>
-                                    <div class="item-price">7.00 AZN</div>
-                                </div>
-                            </div>
-                            <!-- Xaş -->
-<div class="menu-item">
-    <img src="images/Xash .jpg" alt="Xaş" class="menu-image">
-    <div class="item-details">
-        <div class="item-name">Xaş</div>
-        <div class="item-price">5.00 AZN</div>
-    </div>
-</div>
-
-<!-- Qutab (Et) -->
-<div class="menu-item">
-    <img src="images/Qutab (et).jpg" alt="Qutab (Et)" class="menu-image">
-    <div class="item-details">
-        <div class="item-name">Qutab (Et)</div>
-        <div class="item-price">4.50 AZN</div>
-    </div>
-</div>
-                <!-- Qutab (Göyərti) -->
-                <div class="menu-item">
-                    <img src="images/Qutab (goyerti).jpg" alt="Qutab (Göyərti)" class="menu-image">
-                    <div class="item-details">
-                        <div class="item-name">Qutab (Göyərti)</div>
-                        <div class="item-price">3.50 AZN</div>
+                                    <div class="item-name">Səhər Plovu</div>
+                                    <div class="item-description">Ətli, şafran və kişmiş ilə hazırlanmış milli düyü yeməyi</div>
+                                    <div class="item-price">9.00 AZN</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
             <section class="menu-section">
                 <!-- Salatlar -->
                 <div class="menu-category">
@@ -216,32 +435,74 @@
                     <div class="category-content">
                         <div class="menu-items-grid">
                             <div class="menu-item">
-                                <img src="images/Choban Salati.jpg" alt="Çoban Salatı" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Çoban Salatı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Çoban Salatı</div>
-                                    <div class="item-price">4.00 AZN</div>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <img src="images/Paytaxt Salati.jpg" alt="Paytaxt Salatı" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Paytaxt Salatı</div>
+                                    <div class="item-description">Xırda doğranmış pomidor, xiyar, bibər və göyərti</div>
                                     <div class="item-price">5.00 AZN</div>
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="images/Sezar Salati.jpg" alt="Sezar Salatı" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Deniz Salatı" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Dəniz Salatı</div>
+                                    <div class="item-description">Dəniz məhsulları ilə hazırlanmış xüsusi salat</div>
+                                    <div class="item-price">10.00 AZN</div>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <img src="/api/placeholder/400/300" alt="Sezar Salatı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Sezar Salatı</div>
-                                    <div class="item-price">6.00 AZN</div>
+                                    <div class="item-description">Toyuq əti, romaine kahı, parmezan pendiri və xüsusi sous</div>
+                                    <div class="item-price">8.00 AZN</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
             <section class="menu-section">
-                <!-- Şirniyyatlar -->
+                <!-- İçkilər -->
+                <div class="menu-category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <h3>İçkilər</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-items-grid">
+                            <div class="menu-item">
+                                <img src="/api/placeholder/400/300" alt="Ayran" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Ayran</div>
+                                    <div class="item-description">Ənənəvi sərin içki, ev üsulu ilə hazırlanır</div>
+                                    <div class="item-price">2.00 AZN</div>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <img src="/api/placeholder/400/300" alt="Çay (Çaynik)" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Çay (Çaynik)</div>
+                                    <div class="item-description">Qara çay, mürəbbə və limon ilə təqdim olunur</div>
+                                    <div class="item-price">3.00 AZN</div>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <img src="/api/placeholder/400/300" alt="Təbii Meyvə Şirəsi" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Təbii Meyvə Şirəsi</div>
+                                    <div class="item-description">Mövsümi meyvələrdən hazırlanmış təbii şirə</div>
+                                    <div class="item-price">4.00 AZN</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="menu-section">
+                <!-- Desert -->
                 <div class="menu-category">
                     <div class="category-header" onclick="toggleCategory(this)">
                         <h3>Şirniyyatlar</h3>
@@ -250,102 +511,54 @@
                     <div class="category-content">
                         <div class="menu-items-grid">
                             <div class="menu-item">
-                                <img src="images/Paxlava.jpg" alt="Paxlava" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Paxlava" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Paxlava</div>
-                                    <div class="item-price">2.50 AZN</div>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <img src="images/Shekerbura.jpg" alt="Şəkərbura" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Şəkərbura</div>
-                                    <div class="item-price">3.00 AZN</div>
-                                </div>
-                            </div>
-                            <div class="menu-item">
-                                <img src="images/Shokoladli lava keki.jpg" alt="Şokoladlı Lava Keki" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Şokoladlı Lava Keki</div>
-                                    <div class="item-price">4.00 AZN</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="menu-section">
-                <!-- İçecekler (Bəsləyici içkilər) -->
-                <div class="menu-category">
-                    <div class="category-header" onclick="toggleCategory(this)">
-                        <h3>İçkilər</h3>
-                        <span class="arrow">▼</span>
-                    </div>
-                    <div class="category-content">
-                        <div class="menu-items-grid">
-                            <!-- Ayran -->
-                            <div class="menu-item">
-                                <img src="images/Ayran.jpg" alt="Ayran" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Ayran</div>
-                                    <div class="item-price">1.50 AZN</div>
-                                </div>
-                            </div>
-                            <!-- Çay (Çaynik) -->
-                            <div class="menu-item">
-                                <img src="images/Chay (chaynik).webp" alt="Çay (Çaynik)" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Çay (Çaynik)</div>
-                                    <div class="item-price">2.00 AZN</div>
-                                </div>
-                            </div>
-                            <!-- Espresso -->
-                            <div class="menu-item">
-                                <img src="images/Espresso.webp" alt="Espresso" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Espresso</div>
-                                    <div class="item-price">3.00 AZN</div>
-                                </div>
-                            </div>
-                            <!-- Türk Qəhvəsi -->
-                            <div class="menu-item">
-                                <img src="images/Turk qehvesi.png" alt="Türk Qəhvəsi" class="menu-image">
-                                <div class="item-details">
-                                    <div class="item-name">Türk Qəhvəsi</div>
+                                    <div class="item-description">Ənənəvi Azərbaycan şirniyyatı, qoz və bal ilə</div>
                                     <div class="item-price">3.50 AZN</div>
                                 </div>
                             </div>
-                            <!-- Təbii Meyvə Şirəsi -->
                             <div class="menu-item">
-                                <img src="images/Tebii meyve shiresi.jpg" alt="Təbii Meyvə Şirəsi" class="menu-image">
+                                <img src="/api/placeholder/400/300" alt="Şəkərbura" class="menu-image">
                                 <div class="item-details">
-                                    <div class="item-name">Təbii Meyvə Şirəsi</div>
-                                    <div class="item-price">2.50 AZN</div>
+                                    <div class="item-name">Şəkərbura</div>
+                                    <div class="item-description">Fındıq içli ənənəvi Azərbaycan şirniyyatı</div>
+                                    <div class="item-price">3.00 AZN</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            
-            <!-- Digər kateqoriyalar eyni formatda əlavə edilə bilər -->
-        </section>
+        </div>
     </main>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>İş saatları</h3>
-                <p>Həftəiçi: 09:00 - 22:00</p>
-                <p>Həftəsonu: 10:00 - 23:00</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Qızıl Farel Restoran</h3>
+                    <p>Ən dadlı balıq yeməkləri və milli mətbəx nümunələri</p>
+                    <div class="social-icons">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>TW</span></a>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <h3>İş saatları</h3>
+                    <p>Həftəiçi: 09:00 - 23:00</p>
+                    <p>Həftəsonu: 10:00 - 00:00</p>
+                </div>
+                <div class="footer-info">
+                    <h3>Əlaqə</h3>
+                    <p>Ünvan: Bakı şəh., Nərimanov ray.</p>
+                    <p>Tel: (012) 555-55-55</p>
+                    <p>Email: info@qizilfarel.com</p>
+                </div>
             </div>
-            <div class="footer-info">
-                <h3>Əlaqə</h3>
-                <p>Tel: (012) 123-45-67</p>
-                <p>Email: info@restoranim.az</p>
-            </div>
+            <p class="copyright">&copy; 2025 Qızıl Farel Restoran. Bütün hüquqlar qorunur.</p>
         </div>
-        <p class="copyright">&copy; 2025 Mənim Restoranım. Bütün hüquqlar qorunur.</p>
     </footer>
 
     <script>
@@ -369,6 +582,14 @@
                 arrow.classList.add('active');
             }
         }
+
+        // Səhifə yükləndikdə ilk kateqoriyanı aç
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstCategory = document.querySelector('.category-header');
+            if (firstCategory) {
+                toggleCategory(firstCategory);
+            }
+        });
     </script>
 </body>
 </html>

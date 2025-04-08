@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qalereya - Qızıl Farel</title>
+    <style>
+        /* Əsas stillər */
+        :root {
+            --primary-color: #ca9859;
+            --secondary-color: #1c1c1c;
+            --accent-color: #b17e3c;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --bg-light: #f9f5f0;
+            --border-radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--secondary-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo h1 {
+            color: var(--primary-color);
+            margin-left: 15px;
+            font-size: 24px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 20px;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+        
+        main {
+            padding: 40px 0;
+        }
+        
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+        }
+        
+        .page-title h2 {
+            font-size: 32px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .page-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        /* Qalereya stilləri */
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .filter-button {
+            background-color: white;
+            color: var(--text-dark);
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            padding: 8px 20px;
+            margin: 0 10px 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .filter-button:hover, .filter-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-item {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-title {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .gallery-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        /* Modal stilləri */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .modal-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 80%;
+            object-fit: contain;
+            transition: 0.3s;
+            animation: zoom 0.6s;
+        }
+        
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close:hover, .close:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .modal-navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        
+        .prev, .next {
+            cursor: pointer;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 30px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+        
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .modal-caption {
+            display: block;
+            position: absolute;
+            bottom: -45px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            padding: 10px 0;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .pagination button {
+            margin: 0 5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--primary-color);
+            background-color: white;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination button:hover, .pagination button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-info {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .social-icons {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+                justify-content: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav li {
+                margin: 5px 10px;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-info {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/api/placeholder/120/60" alt="Qızıl Farel Logo">
+                <h1>Qızıl Farel</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Səhifə</a></li>
+                    <li><a href="menyu.html">Menyu</a></li>
+                    <li><a href="haqqimizda.html">Haqqımızda</a></li>
+                    <li><a href="galereya.html" class="active">Qalereya</a></li>
+                    <li><a href="elaqe.html">Əlaqə</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-title">
+                <h2>Qalereya</h2>
+            </div>
+            
+            <div class="gallery-filter">
+                <button class="filter-button active" data-filter="all">Hamısı</button>
+                <button class="filter-button" data-filter="yemeklər">Yeməklər</button>
+                <button class="filter-button" data-filter="restoran">Restoran</button>
+                <button class="filter-button" data-filter="balıq">Balıq Yeməkləri</button>
+                <button class="filter-button" data-filter="tədbir">Tədbirlər</button>
+            </div>
+            
+            <div class="gallery-container">
+                <!-- Balıq Yeməkləri -->
+                <div class="gallery-item" data-category="yemeklər balıq">
+                    <img src="/api/placeholder/400/400" alt="Qızıl Farel" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Qızıl Farel</h3>
+                        <p class="gallery-desc">Təzə tutulmuş farel balığı, xüsusi ədviyyatlarla bişirilir</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="yemeklər balıq">
+                    <img src="/api/placeholder/400/400" alt="Təndirdə Balıq" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Təndirdə Balıq</h3>
+                        <p class="gallery-desc">Kəklikotu və limon ilə təndirdə hazırlanmış balıq</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="yemeklər balıq">
+                    <img src="/api/placeholder/400/400" alt="Somon Filesi" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Somon Filesi</h3>
+                        <p class="gallery-desc">Özel sous və tərəvəzlərlə somon balığı</p>
+                    </div>
+                </div>
+                
+                <!-- İsti Yeməklər -->
+                <div class="gallery-item" data-category="yemeklər">
+                    <img src="/api/placeholder/400/400" alt="Düşbərə" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Düşbərə</h3>
+                        <p class="gallery-desc">Ətli milli xəmir yeməyi, sərin qatıqla verilir</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="yemeklər">
+                    <img src="/api/placeholder/400/400" alt="Lülə Kebabı" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Lülə Kebabı</h3>
+                        <p class="gallery-desc">Qoyun ətindən hazırlanmış kabab, təndirdə bişirilir</p>
+                    </div>
+                </div>
+                
+                <!-- Restoran Görüntüləri -->
+                <div class="gallery-item" data-category="restoran">
+                    <img src="/api/placeholder/400/400" alt="Restoran İnteryer" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Restoran İnteryer</h3>
+                        <p class="gallery-desc">Qızıl Farel restoranının içəridən görünüşü</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="restoran">
+                    <img src="/api/placeholder/400/400" alt="Terras" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Yay Terası</h3>
+                        <p class="gallery-desc">Açıq havada yemək üçün mənzərəli terras</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="restoran">
+                    <img src="/api/placeholder/400/400" alt="VIP Salon" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">VIP Salon</h3>
+                        <p class="gallery-desc">Özəl tədbirlər üçün VIP salon</p>
+                    </div>
+                </div>
+                
+                <!-- Tədbirlər -->
+                <div class="gallery-item" data-category="tədbir">
+                    <img src="/api/placeholder/400/400" alt="Toy Mərasimi" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Toy Mərasimi</h3>
+                        <p class="gallery-desc">Qızıl Farel restoranında keçirilən toy mərasimi</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="tədbir">
+                    <img src="/api/placeholder/400/400" alt="Ad Günü" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Ad Günü</h3>
+                        <p class="gallery-desc">Xüsusi ad günü mərasimi</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="tədbir">
+                    <img src="/api/placeholder/400/400" alt="Korporativ Tədbir" class="gallery-image">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title">Korporativ Tədbir</h3>
+                        <p class="gallery-desc">Şirkət tədbirləri üçün ideal məkan</p>
+                    </div>
+                </div>
+                
+                <!-- Daha çox şəkil əlavə edə bilərsiniz -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>></button>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-navigation">
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </div>
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Qızıl Farel Restoran</h3>
+                    <p>Ən dadlı balıq yeməkləri və milli mətbəx nümunələri</p>
+                    <div class="social-icons">
+                        <a href="#"><span>FB</span></a>
+                        <a href="#"><span>IG</span></a>
+                        <a href="#"><span>TW</span></a>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <h3>İş saatları</h3>
+                    <p>Həftəiçi: 09:00 - 23:00</p>
+                    <p>Həftəsonu: 10:00 - 00:00</p>
+                </div>
+                <div class="footer-info">
+                    <h3>Əlaqə</h3>
+                    <p>Ünvan: Bakı şəh., Nərimanov ray.</p>
+                    <p>Tel: (012) 555-55-55</p>
+                    <p>Email: info@qizilfarel.com</p>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2025 Qızıl Farel Restoran. Bütün hüquqlar qorunur.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter funksiyası
+            const filterButtons = document.querySelectorAll('.filter-button');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Aktiv düyməni dəyişdir
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category').includes(filterValue)) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Modal funksiyası
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            const close = document.getElementsByClassName('close')[0];
+            const prev = document.querySelector('.prev');
+            const next = document.querySelector('.next');
+            
+            let currentIndex = 0;
+            const images = document.querySelectorAll('.gallery-image');
+            
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    modal.style.display = 'block';
+                    modalImg.src = this.querySelector('.gallery-image').src;
+                    modalCaption.innerHTML = this.querySelector('.gallery-title').textContent;
+                    currentIndex = index;
+                });
+            });
+            
+            // Bağla düyməsi
+            close.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Kənar tıklama bağlama
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Əvvəlki şəkil
+            prev.addEventListener('click', function() {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+                updateModal();
+            });
+            
+            // Sonrakı şəkil
+            next.addEventListener('click', function() {
+                currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+                updateModal();
+            });
+            
+            function updateModal() {
+                const currentItem = galleryItems[currentIndex];
+                modalImg.src = currentItem.querySelector('.gallery-image').src;
+                modalCaption.innerHTML = currentItem.querySelector('.gallery-title').textContent;
+            }
+            
+            // Klaviatura naviqasiyası
+            document.addEventListener('keydown', function(event) {
+                if (modal.style.display === 'block') {
+                    if (event.key === 'ArrowLeft') {
+                        prev.click();
+                    } else if (event.key === 'ArrowRight') {
+                        next.click();
+                    } else if (event.key === 'Escape') {
+                        close.click();
+                    }
+                }
+            });
+            
+            // Pagination
+            const paginationButtons = document.querySelectorAll('.pagination button');
+            
+            paginationButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    paginationButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

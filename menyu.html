@@ -330,6 +330,46 @@
             </div>
 
             <section class="menu-section">
+                <!-- Səhər Yeməkləri -->
+                <div class="menu-category">
+                    <div class="category-header" onclick="toggleCategory(this)">
+                        <h3>Səhər Yeməkləri</h3>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <div class="category-content">
+                        <div class="menu-items-grid">
+                            <!-- Omlet -->
+                            <div class="menu-item">
+                                <img src="images/Omlet.jpeg" alt="Omlet" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Omlet</div>
+                                    <div class="item-description">Yumşaq və ləzzətli – səhərin ən sevilən seçimi.</div>
+                                    <div class="item-price">6.50 AZN</div>
+                                </div>
+                            </div>
+                            <!--kere yagi ve bal corek-->
+                            <div class="menu-item">
+                                <img src="images/Kere yagi ve bal ile chorek.jpeg" alt="kere yagi ve bal corek" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Kərə yağı və bal çörək</div>
+                                    <div class="item-description">İsti çörəklə birlikdə saf kərə yağı və təbii balın möhtəşəm uyumu.</div>
+                                    <div class="item-price">10 AZN</div>
+                                 </div>
+                             </div>
+                             <!--qarabasaq siyiqi-->
+                            <div class="menu-item">
+                                <img src="images/Qarabashaq siyigi.jpg" alt="qarabasaq siyiqi" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Qarabaşaq sıyığı</div>
+                                    <div class="item-description">Yüngül, faydalı və doyumlu – sağlam qidalananlar üçün ideal seçim.</div>
+                                    <div class="item-price">7 AZN</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="menu-section">
                 <!-- Balıq Yeməkləri -->
                 <div class="menu-category">
                     <div class="category-header" onclick="toggleCategory(this)">
@@ -347,6 +387,7 @@
                                     <div class="item-price">16.50 AZN</div>
                                 </div>
                             </div>
+                            
                             <!-- Təndirdə Balıq -->
                             <div class="menu-item">
                                 <img src="images/tendirde baliq.jpg" alt="Təndirdə Balıq" class="menu-image">
@@ -358,7 +399,7 @@
                             </div>
                             <!-- Somon Balığı -->
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Somon Balığı" class="menu-image">
+                                <img src="images/somon filesi.jpg" alt="Somon Balığı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Somon Filesi</div>
                                     <div class="item-description">Özel sous və tərəvəzlərlə somon balığı</div>
@@ -367,7 +408,7 @@
                             </div>
                             <!-- Balıq Şorbası -->
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Balıq Şorbası" class="menu-image">
+                                <img src="images/Baliq sorbasi.jpg" alt="Balıq Şorbası" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Balıq Şorbası</div>
                                     <div class="item-description">Təzə balıq və tərəvəzlərlə hazırlanmış şorba</div>
@@ -389,7 +430,7 @@
                     <div class="category-content">
                         <div class="menu-items-grid">
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Düşbərə" class="menu-image">
+                                <img src="images/Dushbere.jpeg" alt="Düşbərə" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Düşbərə</div>
                                     <div class="item-description">Ətli milli xəmir yeməyi, sərin qatıqla verilir</div>
@@ -397,7 +438,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Lülə Kebabı" class="menu-image">
+                                <img src="images/Lule kabab.jpeg" alt="Lülə Kebabı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Lülə Kebabı</div>
                                     <div class="item-description">Qoyun ətindən hazırlanmış kabab, təndirdə bişirilir</div>
@@ -405,7 +446,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Toyuq Kebabı" class="menu-image">
+                                <img src="images/Toyuq kababi.jpeg" alt="Toyuq Kebabı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Toyuq Kebabı</div>
                                     <div class="item-description">Marinadlanmış toyuq əti, xüsusi ədviyyatlarla</div>
@@ -413,11 +454,19 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Plov" class="menu-image">
+                                <img src="images/Seher plovu.jpeg" alt="Plov" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Səhər Plovu</div>
                                     <div class="item-description">Ətli, şafran və kişmiş ilə hazırlanmış milli düyü yeməyi</div>
                                     <div class="item-price">9.00 AZN</div>
+                                </div>
+                            </div>
+                                    <div class="menu-item">
+                                        <img src="images/Xash .jpg" alt="Xash" class="menu-image">
+                                        <div class="item-details">
+                                            <div class="item-name">Xaş</div>
+                                            <div class="item-description">Soyuq havaların vazkeçilməzi – doyumlu və gücləndirici ləzzət</div>
+                                            <div class="item-price">12.00 AZN</div>
                                 </div>
                             </div>
                         </div>
@@ -435,7 +484,7 @@
                     <div class="category-content">
                         <div class="menu-items-grid">
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Çoban Salatı" class="menu-image">
+                                <img src="images/Choban Salati.jpg" alt="Çoban Salatı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Çoban Salatı</div>
                                     <div class="item-description">Xırda doğranmış pomidor, xiyar, bibər və göyərti</div>
@@ -443,15 +492,15 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Deniz Salatı" class="menu-image">
+                                <img src="images/Paytaxt Salati.jpg" alt="Paytaxt" class="menu-image">
                                 <div class="item-details">
-                                    <div class="item-name">Dəniz Salatı</div>
-                                    <div class="item-description">Dəniz məhsulları ilə hazırlanmış xüsusi salat</div>
+                                    <div class="item-name">Paytaxt Salatı</div>
+                                    <div class="item-description">Təzə tərəvəzlər və toyuq əti ilə hazırlanan klassik ləzzət.</div>
                                     <div class="item-price">10.00 AZN</div>
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Sezar Salatı" class="menu-image">
+                                <img src="images/Sezar Salati.jpg" alt="Sezar Salatı" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Sezar Salatı</div>
                                     <div class="item-description">Toyuq əti, romaine kahı, parmezan pendiri və xüsusi sous</div>
@@ -473,7 +522,7 @@
                     <div class="category-content">
                         <div class="menu-items-grid">
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Ayran" class="menu-image">
+                                <img src="images/Ayran.jpg" alt="Ayran" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Ayran</div>
                                     <div class="item-description">Ənənəvi sərin içki, ev üsulu ilə hazırlanır</div>
@@ -481,7 +530,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Çay (Çaynik)" class="menu-image">
+                                <img src="images/Chay (chaynik).webp" alt="Çay (Çaynik)" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Çay (Çaynik)</div>
                                     <div class="item-description">Qara çay, mürəbbə və limon ilə təqdim olunur</div>
@@ -489,10 +538,18 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Təbii Meyvə Şirəsi" class="menu-image">
+                                <img src="images/Tebii meyve shiresi.jpg" alt="Təbii Meyvə Şirəsi" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Təbii Meyvə Şirəsi</div>
                                     <div class="item-description">Mövsümi meyvələrdən hazırlanmış təbii şirə</div>
+                                    <div class="item-price">4.00 AZN</div>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <img src="images/Espresso.webp" alt="Espresso" class="menu-image">
+                                <div class="item-details">
+                                    <div class="item-name">Espresso</div>
+                                    <div class="item-description">Güclü aroması və dərin dadı ilə saf qəhvə zövqü.</div>
                                     <div class="item-price">4.00 AZN</div>
                                 </div>
                             </div>
@@ -511,7 +568,7 @@
                     <div class="category-content">
                         <div class="menu-items-grid">
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Paxlava" class="menu-image">
+                                <img src="images/Paxlava.jpg" alt="Paxlava" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Paxlava</div>
                                     <div class="item-description">Ənənəvi Azərbaycan şirniyyatı, qoz və bal ilə</div>
@@ -519,7 +576,7 @@
                                 </div>
                             </div>
                             <div class="menu-item">
-                                <img src="/api/placeholder/400/300" alt="Şəkərbura" class="menu-image">
+                                <img src="images/Shekerbura.jpg" alt="Şəkərbura" class="menu-image">
                                 <div class="item-details">
                                     <div class="item-name">Şəkərbura</div>
                                     <div class="item-description">Fındıq içli ənənəvi Azərbaycan şirniyyatı</div>
@@ -537,7 +594,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3>Qızıl Farel Restoran</h3>
+                    <h3>Mənim restoranım</h3>
                     <p>Ən dadlı balıq yeməkləri və milli mətbəx nümunələri</p>
                     <div class="social-icons">
                         <a href="#"><span>FB</span></a>
@@ -554,10 +611,10 @@
                     <h3>Əlaqə</h3>
                     <p>Ünvan: Bakı şəh., Nərimanov ray.</p>
                     <p>Tel: (012) 555-55-55</p>
-                    <p>Email: info@qizilfarel.com</p>
+                    <p>Email: info@restoranim.az</p>
                 </div>
             </div>
-            <p class="copyright">&copy; 2025 Qızıl Farel Restoran. Bütün hüquqlar qorunur.</p>
+            <p class="copyright">&copy; 2025 Mənim Restoranım. Bütün hüquqlar qorunur.</p>
         </div>
     </footer>
 

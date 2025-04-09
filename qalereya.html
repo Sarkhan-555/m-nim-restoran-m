@@ -8,7 +8,7 @@
         /* Əsas stillər */
         :root {
             --primary-color: #ca9859;
-            --secondary-color: #1c1c1c;
+            --secondary-color: #8b4513;
             --accent-color: #b17e3c;
             --text-light: #ffffff;
             --text-dark: #333333;
@@ -420,7 +420,7 @@
                     <li><a href="index.html">Ana Səhifə</a></li>
                     <li><a href="menyu.html">Menyu</a></li>
                     <li><a href="haqqimizda.html">Haqqımızda</a></li>
-                    <li><a href="galereya.html" class="active">Qalereya</a></li>
+                    <li><a href="qalereya.html" class="active">Qalereya</a></li>
                     <li><a href="elaqe.html">Əlaqə</a></li>
                 </ul>
             </nav>
@@ -435,66 +435,51 @@
             
             <div class="gallery-filter">
                 <button class="filter-button active" data-filter="all">Hamısı</button>
-                <button class="filter-button" data-filter="yemeklər">Yeməklər</button>
                 <button class="filter-button" data-filter="restoran">Restoran</button>
-                <button class="filter-button" data-filter="balıq">Balıq Yeməkləri</button>
+                <button class="filter-button" data-filter="eylence">Əyləncə</button>
                 <button class="filter-button" data-filter="tədbir">Tədbirlər</button>
             </div>
             
             <div class="gallery-container">
-                <!-- Balıq Yeməkləri -->
-                <div class="gallery-item" data-category="yemeklər balıq">
-                    <img src="/api/placeholder/400/400" alt="Qızıl Farel" class="gallery-image">
+                <!-- eylence -->
+                <div class="gallery-item" data-category="eylence">
+                    <img src="images/eylence1.jpg" alt="usaq eylence" class="gallery-image">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">Qızıl Farel</h3>
-                        <p class="gallery-desc">Təzə tutulmuş farel balığı, xüsusi ədviyyatlarla bişirilir</p>
+                        <h3 class="gallery-title">Əyləncə</h3>
+                        <p class="gallery-desc">Uşaqların əyləncəsi üçün</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item" data-category="yemeklər balıq">
-                    <img src="/api/placeholder/400/400" alt="Təndirdə Balıq" class="gallery-image">
+                <div class="gallery-item" data-category="eylence">
+                    <img src="images/eylence2.jpg" alt="eylence" class="gallery-image">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">Təndirdə Balıq</h3>
-                        <p class="gallery-desc">Kəklikotu və limon ilə təndirdə hazırlanmış balıq</p>
+                        <h3 class="gallery-title">Əyləncə</h3>
+                        <p class="gallery-desc">Uşaqların əyləncəsi üçün</p>
                     </div>
                 </div>
                 
-                <div class="gallery-item" data-category="yemeklər balıq">
-                    <img src="/api/placeholder/400/400" alt="Somon Filesi" class="gallery-image">
+                <div class="gallery-item" data-category="eylence">
+                    <img src="images/eylence3.jpg" alt="eylence" class="gallery-image">
                     <div class="gallery-overlay">
-                        <h3 class="gallery-title">Somon Filesi</h3>
-                        <p class="gallery-desc">Özel sous və tərəvəzlərlə somon balığı</p>
+                        <h3 class="gallery-title">Əyləncə</h3>
+                        <p class="gallery-desc">Uşaqların əyləncəsi üçün</p>
                     </div>
                 </div>
                 
-                <!-- İsti Yeməklər -->
-                <div class="gallery-item" data-category="yemeklər">
-                    <img src="/api/placeholder/400/400" alt="Düşbərə" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">Düşbərə</h3>
-                        <p class="gallery-desc">Ətli milli xəmir yeməyi, sərin qatıqla verilir</p>
-                    </div>
-                </div>
-                
-                <div class="gallery-item" data-category="yemeklər">
-                    <img src="/api/placeholder/400/400" alt="Lülə Kebabı" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <h3 class="gallery-title">Lülə Kebabı</h3>
-                        <p class="gallery-desc">Qoyun ətindən hazırlanmış kabab, təndirdə bişirilir</p>
-                    </div>
-                </div>
                 
                 <!-- Restoran Görüntüləri -->
                 <div class="gallery-item" data-category="restoran">
-                    <img src="/api/placeholder/400/400" alt="Restoran İnteryer" class="gallery-image">
+                    <img src="images/restoran interyer.jpg" alt="Restoran İnteryer" class="gallery-image">
                     <div class="gallery-overlay">
                         <h3 class="gallery-title">Restoran İnteryer</h3>
-                        <p class="gallery-desc">Qızıl Farel restoranının içəridən görünüşü</p>
+                        <p class="gallery-desc">Rahatlıq və zərifliyin qovuşduğu interyer dizaynı ilə hər anınız daha xüsusi olsun.
+
+                        </p>
                     </div>
                 </div>
                 
                 <div class="gallery-item" data-category="restoran">
-                    <img src="/api/placeholder/400/400" alt="Terras" class="gallery-image">
+                    <img src="images/terras.jpg" alt="Terras" class="gallery-image">
                     <div class="gallery-overlay">
                         <h3 class="gallery-title">Yay Terası</h3>
                         <p class="gallery-desc">Açıq havada yemək üçün mənzərəli terras</p>
@@ -502,7 +487,7 @@
                 </div>
                 
                 <div class="gallery-item" data-category="restoran">
-                    <img src="/api/placeholder/400/400" alt="VIP Salon" class="gallery-image">
+                    <img src="images/vip salon.jpg" alt="VIP Salon" class="gallery-image">
                     <div class="gallery-overlay">
                         <h3 class="gallery-title">VIP Salon</h3>
                         <p class="gallery-desc">Özəl tədbirlər üçün VIP salon</p>
@@ -511,15 +496,15 @@
                 
                 <!-- Tədbirlər -->
                 <div class="gallery-item" data-category="tədbir">
-                    <img src="/api/placeholder/400/400" alt="Toy Mərasimi" class="gallery-image">
+                    <img src="images/toy merasimi.jpg" alt="Toy Mərasimi" class="gallery-image">
                     <div class="gallery-overlay">
                         <h3 class="gallery-title">Toy Mərasimi</h3>
-                        <p class="gallery-desc">Qızıl Farel restoranında keçirilən toy mərasimi</p>
+                        <p class="gallery-desc">Restoranımızda keçirilən toy mərasimi</p>
                     </div>
                 </div>
                 
                 <div class="gallery-item" data-category="tədbir">
-                    <img src="/api/placeholder/400/400" alt="Ad Günü" class="gallery-image">
+                    <img src="images/ad gunu.jpg" alt="Ad Günü" class="gallery-image">
                     <div class="gallery-overlay">
                         <h3 class="gallery-title">Ad Günü</h3>
                         <p class="gallery-desc">Xüsusi ad günü mərasimi</p>
@@ -527,7 +512,7 @@
                 </div>
                 
                 <div class="gallery-item" data-category="tədbir">
-                    <img src="/api/placeholder/400/400" alt="Korporativ Tədbir" class="gallery-image">
+                    <img src="images/korporativ tedbir.jpg" alt="Korporativ Tədbir" class="gallery-image">
                     <div class="gallery-overlay">
                         <h3 class="gallery-title">Korporativ Tədbir</h3>
                         <p class="gallery-desc">Şirkət tədbirləri üçün ideal məkan</p>
